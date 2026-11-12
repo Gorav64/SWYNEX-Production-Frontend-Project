@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#142345">
+<meta name="description" content="AeroCast live weather dashboard powered by Open-Meteo.">
+<title>AeroCast — Live Weather Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">✦</span><span>Aero<span class="brand-muted">Cast</span></span></a>
+  <div class="live-label"><i></i> LIVE WEATHER <b></b><small>Powered by Open-Meteo</small></div>
+  <div class="top-actions"><button class="icon-btn" id="locateBtn" title="Use my location" aria-label="Use my location">⌖</button><button class="unit-toggle" id="unitToggle"><span id="celsiusLabel" class="active">°C</span><span id="fahrenheitLabel">°F</span></button></div>
+</header>
+<main class="page">
+  <section class="intro">
+    <div><p class="eyebrow">YOUR WEATHER, AT A GLANCE</p><h1>Forecast for <span>every plan.</span></h1><p class="subcopy">A clearer view of the sky, wherever you are.</p></div>
+    <form class="search" id="searchForm" role="search"><span>⌕</span><input id="cityInput" type="search" placeholder="Search city or place..." autocomplete="off" aria-label="Search city or place"><button type="submit">Search</button><div id="searchResults" class="search-results" role="listbox"></div></form>
+  </section>
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <section class="dashboard" id="dashboard" aria-busy="false">
+    <div class="main-col">
+      <article class="current-card">
+        <div class="current-top"><div><div class="place-line"><span>⌖</span><strong id="locationName">New Delhi</strong><button id="favoriteBtn" class="star-btn" aria-label="Save this location">☆</button></div><p id="locationDate">Loading local date...</p></div><span class="current-tag"><i></i> CURRENT WEATHER</span></div>
+        <div class="current-main"><div class="temperature-wrap"><span id="currentIcon" class="weather-icon">🌤️</span><strong id="currentTemperature">--°</strong></div><div class="condition"><h2 id="currentCondition">Getting the forecast</h2><p id="feelsLike">Feels like --°</p><p id="highLow">H: --° · L: --°</p></div></div>
+        <div class="current-bottom"><span><i></i> Updated <strong id="updatedTime">--</strong></span><button id="refreshBtn">↻ Refresh</button></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><p class="panel-kicker">THE NEXT HOURS</p><h2>Hourly forecast</h2></div><span class="panel-meta">Next 6 hours</span></div>
+        <div id="hourlyList" class="hourly-list"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+      </article>
+    </div>
+    <aside class="side-col">
+      <article class="panel">
+        <div class="panel-head"><div><p class="panel-kicker">AT A GLANCE</p><h2>Today's highlights</h2></div><span class="sun-badge">✦</span></div>
+        <div id="highlightGrid" class="highlight-grid">
+          <div class="metric"><span>Feels like</span><strong>--°</strong><small>Apparent temperature</small></div><div class="metric"><span>Humidity</span><strong>--%</strong><small>Relative humidity</small></div><div class="metric"><span>Wind speed</span><strong>--</strong><small>At 10 metres</small></div><div class="metric"><span>Rain chance</span><strong>--%</strong><small>Today's maximum</small></div><div class="metric"><span>UV index</span><strong>--</strong><small>Daily maximum</small></div><div class="metric"><span>Sunrise / Sunset</span><strong>--:--</strong><small>Local time</small></div>
+        </div>
+      </article>
+      <article class="panel weekly-panel">
+        <div class="panel-head"><div><p class="panel-kicker">PLAN AHEAD</p><h2>7-day forecast</h2></div><span class="panel-meta">Daily outlook</span></div>
+        <div id="weeklyList" class="weekly-list"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+      </article>
+    </aside>
+  </section>
+  <section class="bottom-row"><article class="panel saved-panel"><div class="saved-heading"><span>☆</span><div><h2>Your saved places</h2><p>Keep the places you check most close at hand.</p></div></div><div id="savedList" class="saved-list"><small>No saved places yet. Tap ☆ beside a city to save it.</small></div></article><p class="source-note">ⓘ Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>. Forecasts are estimates and may change.</p></section>
+  <footer><span>© <span id="year"></span> AeroCast · SWYNEX Internship Project</span><span>Built with HTML, CSS & JavaScript</span></footer>
+</main>
+<div id="loadingOverlay" class="loading-overlay" hidden><div class="loading-card"><span class="spinner"></span><strong>Finding your forecast</strong><small>Connecting to weather services...</small></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</div>
+<script src="script.js"></script>
+</body></html>
